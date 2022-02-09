@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
+import { route } from '@/Utils';
 import { SidebarDropdownItem } from '..';
 import Divider from '../divider/Divider';
 import SidebarItem from './SidebarItem';
+
 
 const Sidebar: FC = () => {
     return (
@@ -20,8 +22,12 @@ const Sidebar: FC = () => {
                 <ul>
                     <SidebarItem
                         title='Dashboard'
-                        href='/'
+                        href={route.url("dashboard")}
                         icon="HomeIcon" />
+                    <SidebarItem
+                        title='Management User'
+                        href={route.url("management-user")}
+                        icon="UserAddIcon" />
                     <SidebarItem
                         title='Master'
                         withDropdown

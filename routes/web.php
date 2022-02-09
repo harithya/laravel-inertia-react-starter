@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ManagementUserController;
 use App\Http\Controllers\Admin\Master\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,7 +18,8 @@ use Inertia\Inertia;
 */
 
 Route::prefix("admin")->group(function () {
-    Route::get("dashboard", [DashboardController::class, "index"]);
+    Route::get("dashboard", [DashboardController::class, "index"])->name('dashboard.index');
+    Route::resource("management-user", ManagementUserController::class);
     Route::prefix("master")->group(function () {
         Route::resource("category", CategoryController::class);
     });

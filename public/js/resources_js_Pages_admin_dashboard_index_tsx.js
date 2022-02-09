@@ -234,7 +234,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.Icon = exports.SidebarDropdownItem = exports.Modal = exports.FormGroup = exports.Button = exports.Searchbar = exports.Td = exports.Th = exports.Tr = exports.Table = exports.Card = exports.Section = exports.Divider = exports.Container = exports.MainLayout = void 0;
+exports.Pagination = exports.Action = exports.Icon = exports.SidebarDropdownItem = exports.Modal = exports.FormGroup = exports.Button = exports.Searchbar = exports.Td = exports.Th = exports.Tr = exports.Table = exports.Card = exports.Section = exports.Divider = exports.Container = exports.MainLayout = void 0;
 
 var MainLayout_1 = __importDefault(__webpack_require__(/*! ./layout/MainLayout */ "./resources/js/Components/layout/MainLayout.tsx"));
 
@@ -295,6 +295,14 @@ exports.SidebarDropdownItem = SidebarDropdownItem_1["default"];
 var Icon_1 = __importDefault(__webpack_require__(/*! ./icon/Icon */ "./resources/js/Components/icon/Icon.tsx"));
 
 exports.Icon = Icon_1["default"];
+
+var Action_1 = __importDefault(__webpack_require__(/*! ./table/Action */ "./resources/js/Components/table/Action.tsx"));
+
+exports.Action = Action_1["default"];
+
+var Pagination_1 = __importDefault(__webpack_require__(/*! ./table/Pagination */ "./resources/js/Components/table/Pagination.tsx"));
+
+exports.Pagination = Pagination_1["default"];
 
 /***/ }),
 
@@ -393,7 +401,9 @@ var Section = function Section(props) {
     className: 'text-3xl font-medium mb-4'
   }, props.title), props.subtitle && react_1["default"].createElement("p", {
     className: 'text-gray-400 text-sm -mt-2  tracking-wide'
-  }, props.subtitle)), react_1["default"].createElement("div", {
+  }, props.subtitle), props.dataCount && react_1["default"].createElement("p", {
+    className: 'text-gray-400 text-sm -mt-2  tracking-wide'
+  }, props.dataCount, " Enteries Found")), react_1["default"].createElement("div", {
     className: 'container'
   }, props.children));
 };
@@ -464,6 +474,18 @@ exports["default"] = Modal;
 
 
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   Object.defineProperty(o, k2, {
@@ -502,9 +524,36 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
+var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
+var Utils_1 = __webpack_require__(/*! @/Utils */ "./resources/js/Utils/index.tsx");
+
 var Searchbar = function Searchbar() {
+  var _ref = (0, react_1.useState)(''),
+      _ref2 = _slicedToArray(_ref, 2),
+      keyword = _ref2[0],
+      setKeyword = _ref2[1];
+
+  console.log(Utils_1.route.getQuery());
+  (0, react_1.useEffect)(function () {
+    var onSearch = setTimeout(function () {
+      if (keyword.length > 0) {
+        inertia_1.Inertia.visit(Utils_1.route.query(Utils_1.route.current, {
+          keyword: keyword
+        }));
+      }
+    }, 1000);
+    return function () {
+      return clearTimeout(onSearch);
+    };
+  }, [keyword]);
+
+  var handleInput = function handleInput(e) {
+    return setKeyword(e.target.value);
+  };
+
   return react_1["default"].createElement("div", {
     className: 'flex items-center space-x-4 w-4/12 py-1 rounded-md border bg-white pl-5'
   }, react_1["default"].createElement("svg", {
@@ -518,7 +567,9 @@ var Searchbar = function Searchbar() {
     clipRule: "evenodd"
   })), react_1["default"].createElement("input", {
     type: "search",
-    className: "rounded-sm w-full border-none focus:ring-0",
+    value: keyword,
+    onChange: handleInput,
+    className: "rounded-sm placeholder:text-gray-400 w-full border-none focus:ring-0",
     placeholder: "Masukan kata kunci"
   }));
 };
@@ -547,6 +598,8 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
+var Utils_1 = __webpack_require__(/*! @/Utils */ "./resources/js/Utils/index.tsx");
+
 var __1 = __webpack_require__(/*! .. */ "./resources/js/Components/index.tsx");
 
 var Divider_1 = __importDefault(__webpack_require__(/*! ../divider/Divider */ "./resources/js/Components/divider/Divider.tsx"));
@@ -571,8 +624,12 @@ var Sidebar = function Sidebar() {
     className: 'p-5'
   }, react_1["default"].createElement("ul", null, react_1["default"].createElement(SidebarItem_1["default"], {
     title: 'Dashboard',
-    href: '/',
+    href: Utils_1.route.url("dashboard"),
     icon: "HomeIcon"
+  }), react_1["default"].createElement(SidebarItem_1["default"], {
+    title: 'Management User',
+    href: Utils_1.route.url("management-user"),
+    icon: "UserAddIcon"
   }), react_1["default"].createElement(SidebarItem_1["default"], {
     title: 'Master',
     withDropdown: true,
@@ -745,6 +802,117 @@ exports["default"] = SidebarItem;
 
 /***/ }),
 
+/***/ "./resources/js/Components/table/Action.tsx":
+/*!**************************************************!*\
+  !*** ./resources/js/Components/table/Action.tsx ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var __1 = __webpack_require__(/*! .. */ "./resources/js/Components/index.tsx");
+
+var Action = function Action() {
+  return react_1["default"].createElement("div", {
+    className: 'flex flex-row space-x-7'
+  }, react_1["default"].createElement("a", null, react_1["default"].createElement(__1.Icon, {
+    name: 'PencilIcon',
+    className: 'h-[18px] w-[18px] text-gray-500/70'
+  })), react_1["default"].createElement("a", null, react_1["default"].createElement(__1.Icon, {
+    name: 'TrashIcon',
+    className: 'h-[18px] w-[18px] text-gray-500/70'
+  })));
+};
+
+exports["default"] = Action;
+
+/***/ }),
+
+/***/ "./resources/js/Components/table/Pagination.tsx":
+/*!******************************************************!*\
+  !*** ./resources/js/Components/table/Pagination.tsx ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var PageLink = function PageLink(_ref) {
+  var active = _ref.active,
+      label = _ref.label,
+      url = _ref.url;
+  return react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    className: "mr-1 mb-1 px-4 py-3 border border-solid border-gray-300 rounded text-sm hover:bg-white focus:outline-none focus:border-indigo-700 focus:text-indigo-700 ".concat(active && 'bg-white'),
+    href: url !== null && url !== void 0 ? url : ''
+  }, react_1["default"].createElement("span", {
+    className: 'text-sm',
+    dangerouslySetInnerHTML: {
+      __html: label !== null && label !== void 0 ? label : ''
+    }
+  }));
+};
+
+var PageInactive = function PageInactive(_ref2) {
+  var label = _ref2.label;
+  return react_1["default"].createElement("div", {
+    className: "mr-1 mb-1 px-3 py-3 text-sm border rounded border-solid border-gray-300 text-gray",
+    dangerouslySetInnerHTML: {
+      __html: label !== null && label !== void 0 ? label : ''
+    }
+  });
+};
+
+var Pagination = function Pagination(_ref3) {
+  var links = _ref3.links;
+  // dont render, if there's only 1 page (previous, 1, next)
+  if (links.length === 3) return null;
+  return react_1["default"].createElement("div", {
+    className: "flex flex-wrap mt-6 -mb-1 space-x-2"
+  }, links.map(function (_ref4) {
+    var active = _ref4.active,
+        label = _ref4.label,
+        url = _ref4.url;
+    return url === null ? react_1["default"].createElement(PageInactive, {
+      key: label,
+      label: label
+    }) : react_1["default"].createElement(PageLink, {
+      key: label,
+      label: label,
+      active: active,
+      url: url
+    });
+  }));
+};
+
+exports["default"] = Pagination;
+
+/***/ }),
+
 /***/ "./resources/js/Components/table/Table.tsx":
 /*!*************************************************!*\
   !*** ./resources/js/Components/table/Table.tsx ***!
@@ -913,6 +1081,59 @@ Dashboard.layout = function (children) {
 };
 
 exports["default"] = Dashboard;
+
+/***/ }),
+
+/***/ "./resources/js/Utils/constants.tsx":
+/*!******************************************!*\
+  !*** ./resources/js/Utils/constants.tsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.BASE_URL = void 0;
+exports.BASE_URL = '/admin/';
+
+/***/ }),
+
+/***/ "./resources/js/Utils/index.tsx":
+/*!**************************************!*\
+  !*** ./resources/js/Utils/index.tsx ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.route = void 0;
+
+var constants_1 = __webpack_require__(/*! ./constants */ "./resources/js/Utils/constants.tsx");
+
+exports.route = {
+  url: function url(_url) {
+    return constants_1.BASE_URL + _url;
+  },
+  current: window.location.pathname,
+  query: function query(url, params) {
+    var query = "";
+    Object.entries(params).map(function (value, i) {
+      if (value[1].length > 1) {
+        var q = query.length == 0 ? '?' : '&';
+        query += q + "".concat(value[0], "=").concat(value[1]);
+      }
+    });
+    return url + query;
+  },
+  getQuery: function getQuery() {
+    console.log(location);
+  }
+};
 
 /***/ }),
 

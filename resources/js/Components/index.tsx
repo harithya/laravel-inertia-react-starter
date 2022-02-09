@@ -13,6 +13,8 @@ import FormGroup from "./form/FormGroup";
 import Modal from "./modal/Modal";
 import SidebarDropdownItem from "./sidebar/SidebarDropdownItem";
 import Icon from "./icon/Icon";
+import Action from "./table/Action";
+import Pagination from "./table/Pagination";
 
 export {
     MainLayout,
@@ -29,5 +31,7 @@ export {
     FormGroup,
     Modal,
     SidebarDropdownItem,
-    Icon
+    Icon,
+    Action,
+    Pagination
 }

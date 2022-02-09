@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Admin_Master_Category_Index_tsx"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Admin_ManagementUser_Index_tsx"],{
 
 /***/ "./resources/js/Components/button/Button.tsx":
 /*!***************************************************!*\
@@ -1092,10 +1092,10 @@ exports["default"] = Tr;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Master/Category/Index.tsx":
-/*!************************************************************!*\
-  !*** ./resources/js/Pages/Admin/Master/Category/Index.tsx ***!
-  \************************************************************/
+/***/ "./resources/js/Pages/Admin/ManagementUser/Index.tsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/Pages/Admin/ManagementUser/Index.tsx ***!
+  \***********************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -1110,30 +1110,36 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
 var Components_1 = __webpack_require__(/*! @/Components */ "./resources/js/Components/index.tsx");
 
 var TableSection_1 = __importDefault(__webpack_require__(/*! @/Components/layout/TableSection */ "./resources/js/Components/layout/TableSection.tsx"));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var Category = function Category() {
+var ManagementUser = function ManagementUser(_ref) {
+  var users = _ref.users;
   return react_1["default"].createElement(Components_1.Section, {
-    title: 'Master / Kategori',
-    subtitle: '50 Enteries Found'
+    title: 'Management User',
+    dataCount: users.total
   }, react_1["default"].createElement(TableSection_1["default"], {
-    href: '/'
+    href: '/',
+    pagination: users.links
   }, react_1["default"].createElement(Components_1.Table, {
-    thead: ['No', "Kategori", "Aksi"]
-  }, react_1["default"].createElement("tbody", null, react_1["default"].createElement(Components_1.Tr, null, react_1["default"].createElement(Components_1.Td, null, "1"), react_1["default"].createElement(Components_1.Td, null, "Laptop"), react_1["default"].createElement(Components_1.Td, null, "Aksi"))))));
+    thead: ['No', "Username", "Nama", "Email", ""]
+  }, react_1["default"].createElement("tbody", null, users.data.map(function (user, index) {
+    return react_1["default"].createElement(Components_1.Tr, {
+      key: "tr-".concat(index)
+    }, react_1["default"].createElement(Components_1.Td, null, user.id), react_1["default"].createElement(Components_1.Td, null, user.username), react_1["default"].createElement(Components_1.Td, null, user.name), react_1["default"].createElement(Components_1.Td, null, user.email), react_1["default"].createElement(Components_1.Td, null, react_1["default"].createElement(Components_1.Action, null)));
+  })))));
 };
 
-Category.layout = function (children) {
+ManagementUser.layout = function (children) {
   return react_1["default"].createElement(Components_1.MainLayout, {
     children: children
   });
 };
 
-exports["default"] = Category;
+exports["default"] = ManagementUser;
 
 /***/ }),
 

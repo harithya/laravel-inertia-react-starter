@@ -1,8 +1,10 @@
+import { LinkPaginationProps } from '@/Types';
 import React, { FC } from 'react';
-import { Button, Card, Modal, Searchbar } from '..';
+import { Button, Card, Pagination, Searchbar } from '..';
 
 interface Props {
     href: string,
+    pagination?: LinkPaginationProps[]
 }
 const TableSection: FC<Props> = (props) => {
     return (
@@ -19,6 +21,7 @@ const TableSection: FC<Props> = (props) => {
             <Card table>
                 {props.children}
             </Card>
+            {props.pagination && <Pagination links={props.pagination} />}
         </>
     );
 };

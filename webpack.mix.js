@@ -12,14 +12,17 @@ const path = require('path');
  |
  */
 
+
+
 mix.ts('resources/js/app.js', 'public/js')
     .postCss("resources/css/app.css", "public/css", [
         require("tailwindcss"),
     ])
+    .react()
     .webpackConfig({
         resolve: {
             alias: {
-                '@': path.resolve('resources/js')
+                '@': path.resolve('resources/js'),
             }
         },
     });
