@@ -52261,13 +52261,21 @@ if (false) {} else {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./Home": [
-		"./resources/js/Pages/Home.tsx",
-		"resources_js_Pages_Home_tsx"
+	"./Admin/Dashboard/Index": [
+		"./resources/js/Pages/Admin/Dashboard/Index.tsx",
+		"resources_js_Pages_Admin_Dashboard_Index_tsx"
 	],
-	"./Home.tsx": [
-		"./resources/js/Pages/Home.tsx",
-		"resources_js_Pages_Home_tsx"
+	"./Admin/Dashboard/Index.tsx": [
+		"./resources/js/Pages/Admin/Dashboard/Index.tsx",
+		"resources_js_Pages_Admin_Dashboard_Index_tsx"
+	],
+	"./Admin/Master/Category/Index": [
+		"./resources/js/Pages/Admin/Master/Category/Index.tsx",
+		"resources_js_Pages_Admin_Master_Category_Index_tsx"
+	],
+	"./Admin/Master/Category/Index.tsx": [
+		"./resources/js/Pages/Admin/Master/Category/Index.tsx",
+		"resources_js_Pages_Admin_Master_Category_Index_tsx"
 	]
 };
 function webpackAsyncContext(req) {
@@ -52426,7 +52434,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if (chunkId === "resources_js_Pages_Home_tsx") return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_Pages_Admin_Dashboard_Index_tsx":1,"resources_js_Pages_Admin_Master_Category_Index_tsx":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

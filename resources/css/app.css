@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html body {
+    background-color: rgb(246, 246, 249);
+}
+
+.container {
+    max-width: 100%;
+}
+
+.form-group {
+    @apply flex flex-col mb-5;
+}
+
+.form-group label {
+    @apply mb-2 text-sm;
+}
+
+.form-group input,
+textarea,
+select {
+    @apply rounded border-gray-300 focus:ring-0 focus:outline-none;
+}
+
+.form-error input,
+textarea,
+select {
+    @apply border-red-500;
+}

@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Home_tsx"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Admin_Dashboard_Index_tsx"],{
 
 /***/ "./resources/js/Components/button/Button.tsx":
 /*!***************************************************!*\
@@ -578,7 +578,7 @@ var Sidebar = function Sidebar() {
     withDropdown: true,
     icon: "ViewGridAddIcon"
   }, react_1["default"].createElement(__1.SidebarDropdownItem, {
-    href: '/content',
+    href: '/admin/master/category',
     title: 'Category'
   }), react_1["default"].createElement(__1.SidebarDropdownItem, {
     title: 'Brand'
@@ -877,10 +877,10 @@ exports["default"] = Tr;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Home.tsx":
-/*!*************************************!*\
-  !*** ./resources/js/Pages/Home.tsx ***!
-  \*************************************/
+/***/ "./resources/js/Pages/Admin/Dashboard/Index.tsx":
+/*!******************************************************!*\
+  !*** ./resources/js/Pages/Admin/Dashboard/Index.tsx ***!
+  \******************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -899,20 +899,20 @@ var Components_1 = __webpack_require__(/*! @/Components */ "./resources/js/Compo
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var Home = function Home() {
+var Dashboard = function Dashboard() {
   return react_1["default"].createElement(Components_1.Section, {
     title: 'Dashboard',
     subtitle: 'Hey there! Welcome to Ping CRM, a demo app designed to help illustrate how Inertia.js works.'
   });
 };
 
-Home.layout = function (children) {
+Dashboard.layout = function (children) {
   return react_1["default"].createElement(Components_1.MainLayout, {
     children: children
   });
 };
 
-exports["default"] = Home;
+exports["default"] = Dashboard;
 
 /***/ }),
 

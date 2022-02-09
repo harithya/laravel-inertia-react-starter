@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Home_tsx"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Admin_Master_Category_Index_tsx"],{
 
 /***/ "./resources/js/Components/button/Button.tsx":
 /*!***************************************************!*\
@@ -402,6 +402,51 @@ exports["default"] = Section;
 
 /***/ }),
 
+/***/ "./resources/js/Components/layout/TableSection.tsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/Components/layout/TableSection.tsx ***!
+  \*********************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var __1 = __webpack_require__(/*! .. */ "./resources/js/Components/index.tsx");
+
+var TableSection = function TableSection(props) {
+  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("div", {
+    className: 'mb-5 flex justify-between items-center'
+  }, react_1["default"].createElement(__1.Searchbar, null), react_1["default"].createElement(__1.Button, {
+    className: 'flex items-center space-x-2'
+  }, react_1["default"].createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "h-5 w-5",
+    viewBox: "0 0 20 20",
+    fill: "currentColor"
+  }, react_1["default"].createElement("path", {
+    fillRule: "evenodd",
+    d: "M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z",
+    clipRule: "evenodd"
+  })), react_1["default"].createElement("span", null, "Buat entri baru"))), react_1["default"].createElement(__1.Card, {
+    table: true
+  }, props.children));
+};
+
+exports["default"] = TableSection;
+
+/***/ }),
+
 /***/ "./resources/js/Components/modal/Modal.tsx":
 /*!*************************************************!*\
   !*** ./resources/js/Components/modal/Modal.tsx ***!
@@ -578,7 +623,7 @@ var Sidebar = function Sidebar() {
     withDropdown: true,
     icon: "ViewGridAddIcon"
   }, react_1["default"].createElement(__1.SidebarDropdownItem, {
-    href: '/content',
+    href: '/admin/master/category',
     title: 'Category'
   }), react_1["default"].createElement(__1.SidebarDropdownItem, {
     title: 'Brand'
@@ -877,10 +922,10 @@ exports["default"] = Tr;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Home.tsx":
-/*!*************************************!*\
-  !*** ./resources/js/Pages/Home.tsx ***!
-  \*************************************/
+/***/ "./resources/js/Pages/Admin/Master/Category/Index.tsx":
+/*!************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Master/Category/Index.tsx ***!
+  \************************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -897,22 +942,28 @@ Object.defineProperty(exports, "__esModule", ({
 
 var Components_1 = __webpack_require__(/*! @/Components */ "./resources/js/Components/index.tsx");
 
+var TableSection_1 = __importDefault(__webpack_require__(/*! @/Components/layout/TableSection */ "./resources/js/Components/layout/TableSection.tsx"));
+
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var Home = function Home() {
+var Category = function Category() {
   return react_1["default"].createElement(Components_1.Section, {
-    title: 'Dashboard',
-    subtitle: 'Hey there! Welcome to Ping CRM, a demo app designed to help illustrate how Inertia.js works.'
-  });
+    title: 'Master / Kategori',
+    subtitle: '50 Enteries Found'
+  }, react_1["default"].createElement(TableSection_1["default"], {
+    href: '/'
+  }, react_1["default"].createElement(Components_1.Table, {
+    thead: ['No', "Kategori", "Aksi"]
+  }, react_1["default"].createElement("tbody", null, react_1["default"].createElement(Components_1.Tr, null, react_1["default"].createElement(Components_1.Td, null, "1"), react_1["default"].createElement(Components_1.Td, null, "Laptop"), react_1["default"].createElement(Components_1.Td, null, "Aksi"))))));
 };
 
-Home.layout = function (children) {
+Category.layout = function (children) {
   return react_1["default"].createElement(Components_1.MainLayout, {
     children: children
   });
 };
 
-exports["default"] = Home;
+exports["default"] = Category;
 
 /***/ }),
 
